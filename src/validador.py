@@ -91,14 +91,17 @@ def validar_fecha(dia, mes, año):
     if not all(isinstance(x, int) for x in [dia, mes, año]):
         return False
 
-    # BUG: No valida correctamente el mes y día
+    if año < 1900 or año > 2100:
+        return False
+
     if mes < 1 or mes > 12:
         return False
 
-    if dia < 1 or dia > 31:
-        return False
+    dias_por_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
+        dias_por_mes[1] = 29
 
-    if año < 1900 or año > 2100:
+    if dia < 1 or dia > dias_por_mes[mes - 1]:
         return False
 
     return True

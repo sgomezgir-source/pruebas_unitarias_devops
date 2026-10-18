@@ -62,9 +62,9 @@ def test_raiz_cuadrada_positiva():
 
 def test_raiz_cuadrada_negativa_lanza_error():
     """Revela BUG 1 de calculadora: no lanza ValueError con números negativos."""
-
+    # Arrange
     numero = -9
-
+    # Act & Assert
     with pytest.raises(ValueError, match="No se puede calcular la raíz cuadrada de un número negativo"):
         raiz_cuadrada(numero)
 
